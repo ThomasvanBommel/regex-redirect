@@ -1,0 +1,17 @@
+{
+    "manifest_version": 2,
+    "name": "firefox-redirect",
+    "version": "1.0",
+    "description": "Host redirection extension for firefox",
+    "icons": {
+	"48": "icons/firefox-redirect.svg",
+	"96": "icons/firefox-redirect.svg"
+    },
+
+    "content_scripts": [
+	{
+	    "matches": ["*://*.mozilla.org/*"],
+	    "js": ["firefox-redirect.js"]
+	}
+    ]
+}
