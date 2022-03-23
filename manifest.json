@@ -8,10 +8,22 @@
 	"96": "icons/firefox-redirect.svg"
     },
 
-    "content_scripts": [
-	{
-	    "matches": ["*://*.mozilla.org/*"],
-	    "js": ["firefox-redirect.js"]
-	}
-    ]
+    "permissions": [
+	"webRequest",
+	"webRequestBlocking",
+	"<all_urls>",
+	"storage",
+	"activeTab"
+    ],
+
+    "background": {
+	"scripts": ["background.js"]
+    },
+
+    "browser_action": {
+	"default_icon": "icons/firefox-redirect.svg",
+	"default_title": "firefox-redirect",
+	"default_popup": "popup/main.html",
+	"browser_style": true
+    }
 }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      html{
+	  font-size:16px;
+      }
+
+      *{
+	  font-size:1rem;
+	  font-family:monospace;
+      }
+
+      body{
+	  margin:1rem;
+      }
+
+      table td input{
+	  width:100%;
+      }
+
+      .delete{
+	  background-color:rgba(255,0,0,0.5);
+	  color:white;
+      }
+    </style>
+  </head>
+
+  <body>
+    <table id="redirect_table">
+      <tbody>
+	<tr id="header">
+	  <th>Source (Regex)</th>
+	  <th>Target (URL Pattern)</th>
+	  <th></th>
+	</tr>
+      </tbody>
+    </table>
+
+    <button id="new_entry_btn">New Entry</button>
+    
+    <div>
+      <p>URL Pattern Options</p>
+      
+      <ul>
+	<li>[protocol] - Protocol (ie. 'http://')</li>
+	<li>[subdomain] - Subdomain (ie. 'mail.', 'www.')</li>
+	<li>[domain] - Domain name (ie. 'google')</li>
+	<li>[tld] - Top level domain (ie. '.com', '.ca')</li>
+	<li>[hostname] - Hostname (ie. 'mail.google.ca')</li>
+	<li>[host] - Hostname + Port (ie. 'mail.google.ca:8080')</li>
+	<li>[pathname] - Path (ie. '/about/me')</li>
+	<li>[port] - Port (ie. ':8080')</li>
+	<li>[searchParams] - Query parameters (ie. '?user=bob')</li>
+	<li>[username] - Username (ie. 'thomas')</li>
+      </ul>
+    </div>
+
+    <script src="firefox-redirect.js"></script>
+  </body>
+</html>
