@@ -2,37 +2,31 @@ let prefix = "[firefox-redirect]";
 let log    = (...args) => console.log(  prefix, ...args);
 let err    = (...args) => console.error(prefix, ...args);
 
-browser.storage.local.get({ entries: [] })
-    .then(storage => {
-	initialize(storage.entries);
-    }, err);
+let entries = [];
 
-function initialize(entries) {
-    let redirect = e => {
-	for(let entry of entries) {
-	    try {
-		let src = new RegExp(entry.source);
+function updateEntries() {
+    browser.storage.local.get({ entries: [] })
+	.then(storage => {
+	    entries = storage.entries;
+	}, err);
+}
 
-		if(src.test(e.url)) {
-		    let new_url = convertTargetPattern(e.url, entry.target);
-		    
-		    log(entry.source, new_url);
-		    
-		    return {
-			redirectUrl: new_url
-		    };
-		}
-	    } catch(e) {
-		return err("Regular expression error:", e);
+function redirect({ url }) {
+    for(let entry of entries) {
+	try {
+	    if(new RegExp(entry.source).test(url)) {
+		let new_url = convertTargetPattern(url, entry.target);
+
+		log(url, "=>" , new_url);
+
+		return {
+		    redirectUrl: new_url
+		};
 	    }
+	} catch(e) {
+	    return err("Regular expression error:", e);
 	}
-    };
-    
-    browser.webRequest.onBeforeRequest.addListener(
-	redirect,
-	{ urls: ["<all_urls>"] },
-	[ "blocking" ]
-    );
+    }
 }
 
 function convertTargetPattern(source, target) {
@@ -56,3 +50,13 @@ function convertTargetPattern(source, target) {
 
     return result;
 }
+
+browser.storage.onChanged.addListener(() => updateEntries());
+
+browser.webRequest.onBeforeRequest.addListener(
+    redirect,
+    { urls: ["<all_urls>"] },
+    [ "blocking" ]
+);
+
+updateEntries();
