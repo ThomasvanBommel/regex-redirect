@@ -1,11 +1,11 @@
 {
     "manifest_version": 2,
-    "name": "firefox-redirect",
+    "name": "regex-redirect",
     "version": "1.0",
     "description": "Host redirection extension for firefox",
     "icons": {
-	"48": "icons/firefox-redirect.svg",
-	"96": "icons/firefox-redirect.svg"
+	"48": "icons/regex-redirect.svg",
+	"96": "icons/regex-redirect.svg"
     },
 
     "permissions": [
@@ -20,8 +20,8 @@
     },
 
     "browser_action": {
-	"default_icon": "icons/firefox-redirect.svg",
-	"default_title": "firefox-redirect",
+	"default_icon": "icons/regex-redirect.svg",
+	"default_title": "regex-redirect",
 	"default_popup": "popup/main.html",
 	"browser_style": true
     }
