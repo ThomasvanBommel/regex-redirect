@@ -1,8 +1,8 @@
 {
     "manifest_version": 2,
     "name": "regex-redirect",
-    "version": "1.0",
-    "description": "Host redirection extension for firefox",
+    "version": "1.1",
+    "description": "Redirect web-request URLs using regular expressions and URL patterns",
     "icons": {
 	"48": "icons/regex-redirect.svg",
 	"96": "icons/regex-redirect.svg"
@@ -16,7 +16,7 @@
     ],
 
     "background": {
-	"scripts": ["background.js"]
+	"scripts": ["background/background.js"]
     },
 
     "browser_action": {
